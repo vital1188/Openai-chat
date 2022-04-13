@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OpenAI chat</title>
+  </head>
+  <body>
+    <p>Enter an OpenAI API key and select a version:</p>
+    <form id="form">
+      <input
+        type="text"
+        placeholder="OpenAI API key"
+        id="apiKey"
+        name="apiKey"
+      />
+      <input type="radio" value="native-js" id="native-js" name="version" />
+      <label for="native-js">
+        Native JS
+      </label>
+      <input type="radio" value="jquery" id="jquery" name="version" />
+      <label for="jquery">
+        jQuery
+      </label>
+      <button type="submit">Go</button>
+    </form>
+    <script>
+      const form = document.getElementById("form");
+
+      function submitForm(event) {
+        event.preventDefault();
+        const data = new FormData(form);
+        const apiKey = data.get("apiKey");
+        const version = data.get("version");
+
+        apiKey && version && location.assign(`./${version}.html?key=${apiKey}`);
+      }
+
+      form.addEventListener("submit", submitForm);
+    </script>
+  </body>
+</html>
